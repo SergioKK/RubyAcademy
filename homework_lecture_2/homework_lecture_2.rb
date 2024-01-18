@@ -13,3 +13,13 @@ def greeting(arr)
     "Неправильный ввод. Напишите, пожалуйста, свое имя, фамилию и возраст."
   end
 end
+
+def foobar(first_number, second_number)
+  if first_number == 20
+    second_number
+  elsif second_number == 20
+    first_number
+  else
+    first_number + second_number
+  end
+end
