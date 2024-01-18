@@ -17,9 +17,9 @@ class StringExtensionTest < Test::Unit::TestCase
     assert_equal(foobar(1, 20), 1)
     assert_equal(foobar(20, 3), 3)
     assert_equal(foobar(1, 14), 15)
-    assert_raise ArgumentError do
-      foobar('Man')
-    end
+    assert_equal(foobar(20, 20), "Пасхалка")
+    assert_equal(foobar("John", 20), "Неправильный ввод. Введите два числа.")
+    assert_equal(foobar("John"), "Неправильный ввод. Введите два числа.")
   end
 end
 
