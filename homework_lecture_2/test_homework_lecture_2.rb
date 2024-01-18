@@ -1,4 +1,5 @@
-require_relative "homework_lecture_2"
+require_relative "greetig"
+require_relative "check_numbers"
 require 'test/unit'
 
 class StringExtensionTest < Test::Unit::TestCase
@@ -14,12 +15,12 @@ class StringExtensionTest < Test::Unit::TestCase
   end
 
   def test_assert_two_numbers
-    assert_equal(foobar(1, 20), 1)
-    assert_equal(foobar(20, 3), 3)
-    assert_equal(foobar(1, 14), 15)
-    assert_equal(foobar(20, 20), "Пасхалка")
-    assert_equal(foobar("John", 20), "Неправильный ввод. Введите два числа.")
-    assert_equal(foobar("John"), "Неправильный ввод. Введите два числа.")
+    assert_equal(check_numbers(1, 20), 1)
+    assert_equal(check_numbers(20, 3), 3)
+    assert_equal(check_numbers(1, 14), 15)
+    assert_equal(check_numbers(20, 20), "Пасхалка")
+    assert_equal(check_numbers("John", 20), "Неправильный ввод. Введите два числа.")
+    assert_equal(check_numbers("John"), "Неправильный ввод. Введите два числа.")
   end
 end
 
