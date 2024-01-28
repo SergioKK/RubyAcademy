@@ -1,4 +1,4 @@
-WRITERS_LIST_PATH = 'homework_lecture_4/writers.txt'
+WRITERS_LIST_PATH = 'homework_lecture_4/tools_for_work_with_a_file/writers.txt'
 BUFFER = 'buffer.txt'
 def index
   File.foreach(WRITERS_LIST_PATH) {|writer| puts writer}
