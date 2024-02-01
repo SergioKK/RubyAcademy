@@ -8,18 +8,28 @@ module Resource
     loop do
       print 'Choose verb to interact with resources (GET/POST/PUT/DELETE) / q to exit: '
       verb = gets.chomp
+
       break if verb == 'q'
+
+      unless %w[GET POST PUT DELETE].include?(verb)
+        print("You did not choose action (GET/POST/PUT/DELETE) or q to exit\n")
+        next
+      end
 
       action = nil
 
       if verb == 'GET'
         print 'Choose action (index/show) / q to exit: '
         action = gets.chomp
+        unless %w[index show].include?(action)
+          print("You did not choose action (index/show) or q to exit\n")
+          next
+        end
         break if action == 'q'
       end
 
-
       action.nil? ? routes[verb].call : routes[verb][action].call
+
     end
   end
 end
@@ -36,31 +46,36 @@ class PostsController
     @posts.each_with_index do |post, i|
       result << ["#{i}. #{post}"]
     end
-    if result.empty? ? puts("Have no posts yet") : puts(result)
+    if result.empty? ? print("Have no posts yet\n") : puts(result)
     end
   end
 
   def show
-    puts "Please enter index of post you want to see: "
-    puts @posts[gets.chomp.to_i]
+    print "Please enter index of post you want to see: "
+    ind = gets.chomp.to_i
+    if @posts[ind].nil? ? print("No post with such index:#{ind}\n") : puts(@posts[ind])
+    end
   end
 
   def create
-    puts "Please enter your post: "
+    print "Please enter your post: "
     @posts << gets.chomp
   end
 
   def update
-    puts "Please enter index of post you want to update"
+    print "Please enter index of post you want to update: "
     index = gets.chomp.to_i
-    puts "Please enter text you want to change"
+    print "Please enter text you want to change: "
     text = gets.chomp
     @posts[index] = text
   end
 
   def destroy
-    puts "Please enter index of post you want to delete"
-    if @posts.delete_at(gets.chomp.to_i) ? puts("Successfully deleted") : puts("Cannot find post with that index")
+    print "Please enter index of post you want to delete: "
+    if @posts.delete_at(gets.chomp.to_i)
+      print("Successfully deleted\n")
+    else
+      print("Cannot find post with that index\n")
     end
   end
 end
@@ -78,6 +93,7 @@ class Router
       choice = gets.chomp
 
       PostsController.connection(@routes['posts']) if choice == '1'
+      print("No implemented yet, but will be soon. Thx for staying with us.\n") if choice == '2'
       break if choice == 'q'
     end
 
