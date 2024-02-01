@@ -21,8 +21,8 @@ class CashMachineMethods
   end
 end
 
-class CashMacine
-  PATH = '/home/sergio/RubyAcademy/homework_lecture_4/ATM/balance.txt'
+class CashMachine
+  PATH = 'balance.txt'
   def self.init
     command = 0
 
@@ -32,10 +32,11 @@ class CashMacine
       user_balance = CashMachineMethods.new
     end
 
-    while command != "q"
-      puts "Please enter command you want to do with your deposit: 'D' to deposit, 'W' to withdraw, 'B' to see balance, 'Q' to quit"
-
+    loop do
+      puts "Please enter command you want to do with your deposit: 'D' to deposit, " \
+      "'W' to withdraw, 'B' to see balance, 'Q' to quit"
       command = gets.chomp.downcase
+      break if command == 'q'
 
       begin
         if command == "d"
@@ -61,4 +62,4 @@ class CashMacine
   end
 end
 
-CashMacine.init
+CashMachine.init
